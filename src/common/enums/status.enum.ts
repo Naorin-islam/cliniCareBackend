@@ -1,0 +1,54 @@
+export enum AccountStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  SUSPENDED = 'SUSPENDED',
+}
+
+export enum AppointmentStatus {
+  PENDING = 'PENDING',
+  CONFIRMED = 'CONFIRMED',
+  COMPLETED = 'COMPLETED',
+  CANCELLED = 'CANCELLED',
+  NO_SHOW = 'NO_SHOW',
+}
+
+export enum LabReportStatus {
+  REQUESTED = 'REQUESTED',
+  IN_PROGRESS = 'IN_PROGRESS',
+  COMPLETED = 'COMPLETED',
+  CANCELLED = 'CANCELLED',
+}
+
+export enum AdmissionStatus {
+  ADMITTED = 'ADMITTED',
+  DISCHARGED = 'DISCHARGED',
+  TRANSFERRED = 'TRANSFERRED',
+}
+
+export enum BedStatus {
+  AVAILABLE = 'AVAILABLE',
+  OCCUPIED = 'OCCUPIED',
+  RESERVED = 'RESERVED',
+  MAINTENANCE = 'MAINTENANCE',
+}
+
+export enum PaymentStatus {
+  PENDING = 'PENDING',
+  PARTIAL = 'PARTIAL',
+  PAID = 'PAID',
+}
+
+export enum PaymentMethod {
+  CASH = 'CASH',
+  CARD = 'CARD',
+  MOBILE_BANKING = 'MOBILE_BANKING',
+  BANK_TRANSFER = 'BANK_TRANSFER',
+}
+
+export enum NotificationType {
+  APPOINTMENT = 'APPOINTMENT',
+  PRESCRIPTION = 'PRESCRIPTION',
+  LAB_REPORT = 'LAB_REPORT',
+  BILLING = 'BILLING',
+  GENERAL = 'GENERAL',
+}
