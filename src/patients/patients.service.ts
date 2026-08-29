@@ -18,7 +18,7 @@ export class PatientsService {
     }
 
     async findAll(): Promise<Patient[]> {
-        return this.repository.find({ relations: ['user'] });
+    return this.repository.find({ relations: { user: true } });
     }
 
     async findOne(id: string): Promise<Patient> {

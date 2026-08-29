@@ -40,6 +40,10 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
+    if (user.role !== loginDto.role) {
+      throw new UnauthorizedException('User role mismatch');
+    }
+
     return this.generateToken(user);
   }
 
