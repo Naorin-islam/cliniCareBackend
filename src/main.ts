@@ -9,7 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // CORS Configuration
-  const frontendUrl = process.env.FRONTEND_URL;
+  const frontendUrl = process.env['CROS-LIVE-FRONTEND'] || process.env.CROS_LIVE_FRONTEND;
   const allowedOrigins = ['http://localhost:3000'];
   if (frontendUrl) {
     allowedOrigins.push(frontendUrl);
