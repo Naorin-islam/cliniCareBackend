@@ -27,16 +27,28 @@ import { ReportsModule } from './reports/reports.module';
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get<string>('DATABASE_HOST'),
-        port: configService.get<number>('DATABASE_PORT'),
-        username: configService.get<string>('DATABASE_USERNAME'),
-        password: configService.get<string>('DATABASE_PASSWORD'),
-        database: configService.get<string>('DATABASE_NAME'),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: true, // Auto-create tables (Dev only)
-      }),
+      useFactory: (configService: ConfigService) => {
+        const liveDbUrl = configService.get<string>('LIVE_DATABASE_URL');
+        if (liveDbUrl) {
+          return {
+            type: 'postgres',
+            url: liveDbUrl,
+            ssl: { rejectUnauthorized: false },
+            entities: [__dirname + '/**/*.entity{.ts,.js}'],
+            synchronize: true, // Auto-create tables (Dev only, recommended false in prod but keeping for this setup)
+          };
+        }
+        return {
+          type: 'postgres',
+          host: configService.get<string>('DATABASE_HOST'),
+          port: configService.get<number>('DATABASE_PORT'),
+          username: configService.get<string>('DATABASE_USERNAME'),
+          password: configService.get<string>('DATABASE_PASSWORD'),
+          database: configService.get<string>('DATABASE_NAME'),
+          entities: [__dirname + '/**/*.entity{.ts,.js}'],
+          synchronize: true, // Auto-create tables (Dev only)
+        };
+      },
       inject: [ConfigService],
     }),
     UsersModule,
